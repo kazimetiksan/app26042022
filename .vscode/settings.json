@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7bb72db5-4eab-406d-8522-79acd6e22a83/resourceGroups/appsvc_linux_centralus_premium/providers/Microsoft.Web/sites/myappkex",
+    "appService.deploySubpath": "."
+}
