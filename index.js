@@ -20,7 +20,7 @@ app.get('/api/hello', async (req, res) => {
 
 app.get('/api/merhaba', (req, res) => {
 
-    res.send('Merhaba Dünya')
+    res.send('Merhaba Dünyalı')
 })
 
 app.post('/api/name', (req, res) => {
