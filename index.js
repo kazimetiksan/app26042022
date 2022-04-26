@@ -2,8 +2,48 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const _ = require('lodash')
 
+const appIns = require('applicationinsights')
+appIns.setup()
+.setSendLiveMetrics(true)
+.start()
+
 const app = express()
 app.use(bodyParser.json())
+
+app.get('/api/event', async (req, res) => {
+
+    const telemetry = appIns.defaultClient
+    telemetry.trackEvent({
+        name: 'Bir Event Oluştu',
+        properties: {
+            loginCount: 100,
+            lastLoginName: 'kazım etiksan'
+        }
+    })
+
+    res.send('app insights event')
+})
+
+app.get('/api/metric', async (req, res) => {
+
+    const telemetry = appIns.defaultClient
+    telemetry.trackMetric({
+        name: 'Order Count',
+        value: 1000
+    })
+
+    res.send('app insights metric')
+})
+
+app.get('/api/exception', async (req, res) => {
+
+    const telemetry = appIns.defaultClient
+    telemetry.trackException({
+        exception: new Error('Bir önemli hata oluştu!')
+    })
+
+    res.send('app insights exception')
+})
 
 app.get('/api/env', async (req, res) => {
 
